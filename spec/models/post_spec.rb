@@ -9,6 +9,6 @@ RSpec.describe Post, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of :body }
-    it { is_expected.to validate_length_of(:body).is_at_least(1) }
+    it { expect(subject).to validate_length_of(:body).is_at_least(1) }
   end
 end

@@ -1,0 +1,9 @@
+<div>
+  <%= link_to "Back to chats", chats_path %>
+</div>
+<% if @chat %>
+  <h2><%= @chat.topic %></h2>
+  <p>Do you want to add a message?</p>
+  <div id='chat'>
+  </div>
+<% end %>

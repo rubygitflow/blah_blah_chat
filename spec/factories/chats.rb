@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :chat do
-    topic { Faker::Lorem.words(number: 5) }
+    topic { Faker::Lorem.words(number: 5).join(' ') }
   end
 end

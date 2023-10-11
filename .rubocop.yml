@@ -1,3 +1,18 @@
+require:
+  - rubocop-rspec
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 7
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
 AllCops:
   Exclude:
     - bin/**/*

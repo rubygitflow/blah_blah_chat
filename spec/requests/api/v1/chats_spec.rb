@@ -12,7 +12,7 @@ RSpec.describe Api::V1::ChatsController, type: :request do
 
   describe 'GET /api/v1/chats' do
     let!(:chats) { create_list(:chat, 3) }
-    let!(:chat) { chats.first }
+    let!(:chat) { chats.last }  # we'll looking for the first elenm from inverted list
     let(:method) { :get }
     let(:api_path) { '/api/v1/chats' }
 

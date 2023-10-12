@@ -58,7 +58,6 @@ gem 'propshaft'
 # Executes code after database commit wherever you want in your application [https://github.com/Envek/after_commit_everywhere]
 gem 'after_commit_everywhere', '~> 1.3'
 
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]

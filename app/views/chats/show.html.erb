@@ -2,5 +2,5 @@
   <%= link_to "Back to chats", chats_path %>
 </div>
 <% if @chat %>
-  <%= render "posts/index", resource: @chat %>
+  <%= render "posts/index", resource: [@chat, @posts] %>
 <% end %>

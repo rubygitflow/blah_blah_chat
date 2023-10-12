@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <p><%= notice %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>

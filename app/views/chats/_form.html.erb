@@ -1,0 +1,10 @@
+<%= form_with(model: chat) do |form| %>
+  <div>
+    <p><%= form.label :topic %></p>
+    <p><%= form.text_field :topic, required: true, minlength: 1 %></p>
+  </div>
+
+  <div>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>

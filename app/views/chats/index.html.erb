@@ -1,0 +1,9 @@
+<h1>Blah_blah_chat</h1>
+<div id='chats'>
+  <% @chats.each do |chat| %>
+    <%= render chat %>
+  <% end %>
+  <div>
+    <%= link_to "Add new chat", new_chat_path %>
+  </div>
+</div>

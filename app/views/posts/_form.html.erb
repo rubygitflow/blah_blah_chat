@@ -1,0 +1,9 @@
+<%= form_with(model: [post.chat, post]) do |form| %>
+  <div>
+    <p><%= form.text_field :body, required: true, minlength: 1 %></p>
+  </div>
+
+  <div>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>

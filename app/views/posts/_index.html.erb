@@ -1,6 +1,6 @@
 <h2>Chat: <%= resource.topic %></h2>
 <div id='posts'>
-  <% resource.posts.each do |post| %>
+  <% resource.posts.order(created_at: :desc).each do |post| %>
     <%= render post %>
   <% end %>
   <div>

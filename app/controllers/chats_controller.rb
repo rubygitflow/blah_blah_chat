@@ -2,7 +2,7 @@
 
 class ChatsController < ApplicationController
   def index
-    @chats = Chat.all
+    @chats = Chat.order(created_at: :desc)
   end
 
   def show

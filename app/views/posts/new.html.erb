@@ -1,0 +1,8 @@
+<div>
+  <%= link_to "Back to chat posts", chat_path(@chat.id) %>
+</div>
+
+<%= render "shared/errors", resource: @post %>
+
+<p>Enter your message:</p>
+<%= render "form", post: @post %>

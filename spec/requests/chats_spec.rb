@@ -27,7 +27,7 @@ RSpec.describe 'Chats', type: :request do
     end
 
     it 'populates a chat' do
-      expect(response.body).to include('Do you want to add a message?')
+      expect(response.body).to include("Chat: #{chat.topic}")
     end
 
     it 'renders show view' do
@@ -48,13 +48,8 @@ RSpec.describe 'Chats', type: :request do
   end
 
   describe 'POST /create' do
-    it 'returns http success' do
-      get '/chats/create'
-      expect(response).to have_http_status(:success)
-    end
-
     context 'with valid attributes' do
-      let(:valid_attributes) { { topic: Faker::Lorem.words(number: 5).join(' ') } }
+      let(:valid_attributes) { { topic: Faker::Lorem.sentence(word_count: 5) } }
 
       it 'saves a chat topic in the database' do
         expect do
@@ -64,7 +59,12 @@ RSpec.describe 'Chats', type: :request do
 
       it 'redirects to show' do
         post chats_url, params: { chat: valid_attributes }
-        expect(response).to redirect_to assigns(:chat)
+        expect(response).to redirect_to(assigns(:chat))
+      end
+
+      it 'redirects to the last Chat page' do
+        post chats_url, params: { chat: valid_attributes }
+        expect(response).to redirect_to(chat_url(Chat.last))
       end
     end
 
@@ -80,6 +80,16 @@ RSpec.describe 'Chats', type: :request do
       it 're-renders a new view' do
         post chats_url, params: { chat: invalid_attributes }
         expect(response).to render_template :new
+      end
+
+      it 'shows a reason of error' do
+        post chats_url, params: { chat: invalid_attributes }
+        expect(response.body).to include('from being saved:')
+      end
+
+      it 'returns http unprocessable_entity' do
+        post chats_url, params: { chat: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

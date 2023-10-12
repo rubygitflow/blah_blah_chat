@@ -2,5 +2,8 @@
   <%= link_to "Back to chats", chats_path %>
 </div>
 <h2>New chat</h2>
+
+<%= render "shared/errors", resource: @chat %>
+
 <p>Enter the topic</p>
 <%= render "form", chat: @chat %>

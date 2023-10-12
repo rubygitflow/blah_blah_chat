@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_to @chat, notice: 'Your chat successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -13,4 +13,12 @@ Rails.application.routes.draw do
   resources :chats, only: %i[index show new create] do
     resources :posts, only: %i[new create]
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :chats, only: %i[index], shallow: true do
+        resources :posts, only: %i[create]
+      end
+    end
+  end
 end

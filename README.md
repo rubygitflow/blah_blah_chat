@@ -1,7 +1,9 @@
 # blah_blah_chat
 Demo App with Hotwire
 
-## Setuo
+Here you can add topics and post messages.
+
+## Setup
 Configure the database in `config/database.yml`
 ```bash
 $ rails db:setup

@@ -3,10 +3,6 @@
 class PostsController < ApplicationController
   before_action :find_chat
 
-  # def index
-  #   @posts = @chat.posts
-  # end
-
   def new
     @post = @chat.posts.new
   end

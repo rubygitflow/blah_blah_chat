@@ -59,11 +59,13 @@ RSpec.describe 'Chats', type: :request do
 
       it 'redirects to show' do
         post chats_url, params: { chat: valid_attributes }
+
         expect(response).to redirect_to(assigns(:chat))
       end
 
       it 'redirects to the last Chat page' do
         post chats_url, params: { chat: valid_attributes }
+
         expect(response).to redirect_to(chat_url(Chat.last))
       end
     end
@@ -79,16 +81,19 @@ RSpec.describe 'Chats', type: :request do
 
       it 're-renders a new view' do
         post chats_url, params: { chat: invalid_attributes }
+
         expect(response).to render_template :new
       end
 
       it 'shows a reason of error' do
         post chats_url, params: { chat: invalid_attributes }
+
         expect(response.body).to include('from being saved:')
       end
 
       it 'returns http unprocessable_entity' do
         post chats_url, params: { chat: invalid_attributes }
+
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

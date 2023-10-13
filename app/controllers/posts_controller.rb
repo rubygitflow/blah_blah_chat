@@ -4,14 +4,16 @@ class PostsController < ApplicationController
   before_action :find_chat
 
   def new
-    @post = @chat.posts.new
+    @post = @chat.posts.build
   end
 
   def create
-    @post = @chat.posts.new(post_params)
+    # здесь надо стримить по подписке через callback модели Post
+    # но воспользуемся gem 'after_commit_everywhere'
+    success, @post = Posts::CreateService.call(@chat, post_params)
 
-    if @post.save
-      redirect_to chat_path(@chat.id), notice: 'Your post successfully created.'
+    if success
+      flash.now[:success] = 'Your post successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

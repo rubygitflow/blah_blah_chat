@@ -27,7 +27,7 @@ RSpec.describe 'Chats', type: :request do
     end
 
     it 'populates a chat' do
-      expect(response.body).to include("Chat: #{chat.topic}")
+      expect(response.body).to include(chat.topic)
     end
 
     it 'renders show view' do

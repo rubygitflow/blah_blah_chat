@@ -27,10 +27,10 @@ RSpec.describe 'Posts', type: :request do
         end.to change(Post, :count).by(1)
       end
 
-      it 'redirects to index' do
+      it 'displays a flash notification' do
         post chat_posts_url(chat.id), params: { post: valid_attributes }
 
-        expect(response).to redirect_to(chat_path(chat.id))
+        expect(response.body).to include('Your post successfully created.')
       end
     end
 

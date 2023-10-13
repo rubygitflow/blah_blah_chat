@@ -1,0 +1,3 @@
+<!-- "posts" - из turbo_frame_tag 'posts' -->
+<!-- post пробрасываем из post_call -->
+<%= turbo_stream.prepend "posts", partial: 'posts/post', locals: {post: post} %>

@@ -2,6 +2,7 @@
 Demo App with Hotwire
 
 Here you can add topics and post messages.
+Hotwire allows you to monitor the messages from any chat users.
 
 ## Setup
 Configure the database in `config/database.yml`

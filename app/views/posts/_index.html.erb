@@ -1,9 +1,0 @@
-<h2>Chat: <%= resource[0].topic %></h2>
-<div id='posts'>
-  <% resource[1].each do |post| %>
-    <%= render post %>
-  <% end %>
-  <div>
-    <%= link_to "Add new post", new_chat_post_path(resource[0].id) %>
-  </div>
-</div>

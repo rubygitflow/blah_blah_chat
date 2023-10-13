@@ -1,5 +1,5 @@
-<div>
-  <ul>
-    <%= l(post.created_at, format: :short) %> <%= post.body %>
-  </ul>
-</div>
+<!-- и обрабатываем этот html из posts_controller.js -->
+<%= tag.section data: {'posts-target': 'post'} do %>
+  <%= l(post.created_at, format: :short) %>: <%= post.body %>
+  <hr>
+<% end %>

@@ -2,5 +2,21 @@
   <%= link_to "Back to chats", chats_path %>
 </div>
 <% if @chat %>
-  <%= render "posts/index", resource: [@chat, @posts] %>
+  <h2>Chat: <%= @chat.topic %></h2>
+
+  <div>
+    <%= link_to "Add new post", new_chat_post_path(@chat.id),
+    data: {turbo_frame: dom_id(Post.new) } %>
+  </div>
+
+  <!-- подписка на обновления страницы соответствующими данными из канала с названием-->
+  <%= turbo_stream_from(@chat, :posts) %>
+
+  <div>
+    <%= turbo_frame_tag Post.new %>
+  </div>
+
+  <%= turbo_frame_tag 'posts', data: {controller: 'posts'} do %>
+    <%= render @posts %>
+  <% end %>
 <% end %>

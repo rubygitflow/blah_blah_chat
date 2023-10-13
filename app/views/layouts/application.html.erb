@@ -15,6 +15,9 @@
     <% if notice.present? %>
       <p><%= notice %></p>
     <% end %>
+    <div id="flash">
+      <%= render 'shared/flash' %>
+    </div>
     <%= yield %>
   </body>
 </html>

@@ -1,6 +1,6 @@
 <!-- и обрабатываем этот html из posts_controller.js -->
 <%= tag.section data: {'posts-target': 'post', controller: 'posts toast', action: 'posts:copy->toast#show'} do %>
-  <div data-action="click->posts#getInfo" data-links-target="link" >
+  <div data-action="click->posts#getInfo" >
     <%= l(post.created_at, format: :short) %>> <%= post.body %>
     <hr>
   </div>

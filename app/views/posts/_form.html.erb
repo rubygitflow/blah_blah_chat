@@ -2,13 +2,13 @@
   <%= render "shared/errors", resource: post %>
 
   <%= form_with(model: [post.chat, post]) do |form| %>
-    <p>Enter your message:</p>
     <div>
-      <p><%= form.text_field :body, required: true, minlength: 1 %></p>
+      <%= form.label "Enter your message:" %>
+      <%= form.text_area :body, required: true, minlength: 1, class: "w-100" %>
     </div>
 
-    <div>
-      <%= form.submit 'Save' %>
+    <div class="mt-2">
+      <%= form.submit 'Save', class: "btn btn-danger w-100" %>
     </div>
   <% end %>
 <% end %>

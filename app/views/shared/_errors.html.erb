@@ -1,6 +1,8 @@
 <% if resource.errors.any? %>
-  <div>
-    <h3><%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.class.name %> from being saved:</h3>
+  <div class="d-block error-panel rounded">
+    <div class="p-2 fs-5">
+      <%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.class.name %> from being saved:
+    </div>
 
     <ul>
       <% resource.errors.each do |error| %>

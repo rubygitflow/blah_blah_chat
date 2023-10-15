@@ -1,10 +1,10 @@
 <%= form_with(model: chat) do |form| %>
   <div>
-    <p><%= form.label :topic %></p>
-    <p><%= form.text_field :topic, required: true, minlength: 1 %></p>
+    <%= form.label "Enter the topic:" %>
+    <%= form.text_area :topic, required: true, minlength: 1, rows: 3, class: "w-100" %>
   </div>
 
-  <div>
-    <%= form.submit 'Save' %>
+  <div class="mt-2">
+    <%= form.submit 'Save', class: "btn btn-danger w-100" %>
   </div>
 <% end %>

@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   postTargetConnected(e) {
-    let p = this.postTargets[0].innerText.split('>')[1]
+    let p = this.postTargets[0].innerText.split('\n')[1]
     let c = this.chat.innerText
     this.dispatch('copy', { detail: { chat: c, post: p } })
     this.audio.play();

@@ -12,9 +12,14 @@
   </head>
 
   <body>
-    <% if notice.present? %>
-      <p><%= notice %></p>
-    <% end %>
-    <%= yield %>
+    <div class="wrapper">
+      
+      <% if notice.present? %>
+        <div class="container notice-panel rounded-top text-light">
+          <%= notice %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

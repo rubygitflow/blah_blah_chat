@@ -1,2 +1,31 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+body {
+  background: #03071E;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  margin: 40px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.container {
+  background: #fff;
+  padding: 10px;
+}
+
+.control-panel {
+ background: $red-800;
+}
+
+.notice-panel {
+ background: $green-800;
+}
+
+.error-panel {
+ background: $gray-200;
+}

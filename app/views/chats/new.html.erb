@@ -1,9 +1,12 @@
-<div>
-  <%= link_to "Back to chats", chats_path %>
+<div class="container control-panel">
+  <div>
+    <%= link_to "Back to chats", chats_path, class:"text-decoration-none link-light" %>
+  </div>
 </div>
-<h2>New chat</h2>
+<div class="container">
+  <h2>New chat</h2>
 
-<%= render "shared/errors", resource: @chat %>
+  <%= render "shared/errors", resource: @chat %>
 
-<p>Enter the topic</p>
-<%= render "form", chat: @chat %>
+  <%= render "form", chat: @chat %>
+</div>

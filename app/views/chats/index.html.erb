@@ -1,9 +1,17 @@
-<h1>Blah_blah_chat</h1>
+<div class="container control-panel">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="fs-1 fw-bold text-warning">
+      Blah_blah_chat
+    </div>
+    <div>
+      <%= link_to "Add new chat", new_chat_path, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>
 <div id='chats'>
   <% @chats.each do |chat| %>
-    <%= render chat %>
+    <div class="container mt-1">
+      <%= render chat %>
+    </div>
   <% end %>
-  <div>
-    <%= link_to "Add new chat", new_chat_path %>
-  </div>
 </div>

@@ -2,12 +2,12 @@
 
 class ChatsController < ApplicationController
   def index
-    @chats = Chat.order(created_at: :desc)
+    @chats = Chat.order(updated_at: :desc)
   end
 
   def show
     @chat = Chat.find_by(id: params[:id])
-    @posts = @chat.posts.order(created_at: :desc)
+    @posts = @chat.posts.order(created_at: :desc) if @chat
   end
 
   def new

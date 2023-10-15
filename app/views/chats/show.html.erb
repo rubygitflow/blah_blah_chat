@@ -1,24 +1,36 @@
-<div>
-  <%= link_to "Back to chats", chats_path %>
+<div class="container control-panel">
+  <div>
+    <%= link_to "Back to chats", chats_path, class:"text-decoration-none link-light" %>
+  </div>
 </div>
 <% if @chat %>
-  <h2>Chat: <div id="showChat"> <%= @chat.topic %> </div></h2>
+  <div class="container control-panel">
+    <div class="d-flex align-items-center justify-content-between mr-1">
+      <div class="fs-1 fw-bold text-warning">
+        Chat:
+      </div>  
+      <div id="showChat" class="fs-2 fw-bold text-light"> 
+        <%= @chat.topic %> 
+      </div>
+      <div>
+        <%= link_to "Add new post", new_chat_post_path(@chat.id),
+        data: {turbo_frame: dom_id(Post.new) }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div>
+      <%= turbo_frame_tag Post.new %>
+    </div>
 
-  <div>
-    <%= link_to "Add new post", new_chat_post_path(@chat.id),
-    data: {turbo_frame: dom_id(Post.new) } %>
+    <%= turbo_frame_tag 'posts', data: {controller: 'posts'} do %>
+      <%= render @posts %>
+    <% end %>
   </div>
 
   <!-- подписка на обновления страницы соответствующими данными из канала с названием-->
   <%= turbo_stream_from(@chat, :posts) %>
-
-  <div>
-    <%= turbo_frame_tag Post.new %>
-  </div>
-
-  <%= turbo_frame_tag 'posts', data: {controller: 'posts'} do %>
-    <%= render @posts %>
-  <% end %>
 <% end %>
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">

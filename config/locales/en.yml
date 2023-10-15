@@ -29,3 +29,10 @@
 
 en:
   hello: "Hello world"
+en:
+  date:
+    formats:
+      medium: "%b %d %Y"
+  time:
+    formats:
+      medium: "%b %d %Y; %H:%M"

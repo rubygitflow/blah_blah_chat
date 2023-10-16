@@ -1,5 +1,5 @@
 <!-- и обрабатываем этот html из posts_controller.js -->
-<%= tag.section data: {'posts-target': 'post', controller: 'posts toast', action: 'posts:copy->toast#show'} do %>
+<%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
   <div class="d-flex align-items-start justify-content-start">
     <div class="fw-lighter me-2">
       <%= l(post.created_at, format: :medium) %>

@@ -6,9 +6,9 @@ module Api
       before_action :find_chat
 
       def create
-        @post = @chat.posts.new(post_params)
+        success, @post = Posts::CreateService.call(@chat, post_params)
 
-        if @post.save
+        if success
           render json: { post: @post }, status: :created
         else
           render json: { errors: @post.errors }, status: :unprocessable_entity

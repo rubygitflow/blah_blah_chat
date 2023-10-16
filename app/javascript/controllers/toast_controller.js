@@ -15,10 +15,9 @@ export default class extends Controller {
 
   toastTargetConnected(e) {
     this.toast_bak  = e.innerText.trim()
-    if (this.toast_bak === this.toast_text) {
-    } else {
+    if (this.toast_bak === this.toast_text) {} else {
       this.toast_text = this.toast_bak
-      if this.toast_text === '' {} alse {
+      if (this.toast_text === '') {} else {
         this.toast.show()
         this.audio.play()
       }

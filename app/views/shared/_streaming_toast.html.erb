@@ -1,0 +1,6 @@
+<!-- подписка на обновления страницы соответствующими данными из канала с названием-->
+<%= turbo_stream_from('global_post_notification') %>
+
+<div id="toast" >
+  <%= render partial: "shared/toast", locals: {post: nil, chat: nil} %>
+</div>

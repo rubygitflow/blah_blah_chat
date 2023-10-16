@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
+  before_action :init_toast, only: %i[show index]
+
   def index
     @chats = Chat.order(updated_at: :desc)
   end
@@ -28,5 +30,10 @@ class ChatsController < ApplicationController
 
   def chat_params
     params.require(:chat).permit(:topic)
+  end
+
+  def init_toast
+    @chat = nil
+    @post = nil
   end
 end

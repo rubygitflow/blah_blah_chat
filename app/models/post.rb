@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   belongs_to :chat, touch: true
 
   validates :body, presence: true,
@@ -14,6 +16,6 @@ class Post < ApplicationRecord
     broadcast_update_to 'global_post_notification',
                         target: 'toast',
                         partial: 'shared/toast',
-                        locals: { post: self, chat: }
+                        locals: { post: self, chat:, link: chat_path(chat.id) }
   end
 end

@@ -14,6 +14,10 @@ $ rails db:setup
 ```bash
 $ rails s
 ```
+or in dev environment
+```bash
+$ bin/dev
+```
 Open the app `http://localhost:3000 ` in the browser
 
 ## API

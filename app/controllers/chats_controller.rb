@@ -20,8 +20,10 @@ class ChatsController < ApplicationController
     @chat = Chat.new(chat_params)
 
     if @chat.save
-      redirect_to @chat, notice: 'Your chat successfully created.'
+      flash[:success] = 'The Chat successfully created.'
+      redirect_to @chat
     else
+      flash.now[:danger] = 'Something went wrong'
       render :new, status: :unprocessable_entity
     end
   end

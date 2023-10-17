@@ -1,3 +1,7 @@
-<% flash.each do |k, v| %>
-  <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
-<% end %>
+<div  id="flash">
+  <div data-controller="autohide">
+    <% flash.each do |k, v| %>
+      <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+    <% end %>
+  </div>
+</div>

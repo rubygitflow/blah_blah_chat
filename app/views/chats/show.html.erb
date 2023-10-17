@@ -6,7 +6,7 @@
 <% if @chat %>
   <div class="container control-panel">
     <div class="d-flex align-items-center justify-content-between mr-1">
-      <div class="fs-1 fw-bold text-warning">
+      <div class="fs-1 fw-bold text-info">
         Chat:
       </div>  
       <div id="showChat" class="fs-2 fw-bold text-light"> 
@@ -14,7 +14,7 @@
       </div>
       <div>
         <%= link_to "Add new post", new_chat_post_path(@chat.id),
-        data: {turbo_frame: dom_id(Post.new) }, class: 'btn btn-danger' %>
+        data: {turbo_frame: dom_id(Post.new) }, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>

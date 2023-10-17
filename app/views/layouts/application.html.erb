@@ -13,12 +13,7 @@
 
   <body>
     <div class="wrapper">
-      
-      <% if notice.present? %>
-        <div class="container notice-panel rounded-top text-light">
-          <%= notice %>
-        </div>
-      <% end %>
+      <%= render 'shared/flash' %>
       <%= yield %>
     </div>
   </body>

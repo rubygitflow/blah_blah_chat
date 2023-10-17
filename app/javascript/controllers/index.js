@@ -8,3 +8,5 @@ application.register("posts", PostsController)
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
 
+import AutohideController from "./autohide_controller"
+application.register("autohide", AutohideController)

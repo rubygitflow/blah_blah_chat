@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     success, @post = Posts::CreateService.call(@chat, post_params)
 
     if success
-      flash.now[:success] = 'Your post successfully created.'
+      flash.now[:success] = 'Your Post successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

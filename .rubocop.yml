@@ -18,7 +18,10 @@ RSpec/NestedGroups:
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
-  
+
+RSpec/ExampleLength:
+  Max: 10
+
 AllCops:
   Exclude:
     - bin/**/*

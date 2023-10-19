@@ -39,7 +39,10 @@ class ChatsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @chat&.destroy
+    flash.now[:success] = "Chat \"#{@chat.topic}\" deleted!" if @chat&.destroyed?
+  end
 
   private
 

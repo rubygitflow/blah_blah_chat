@@ -142,4 +142,23 @@ RSpec.describe 'Chats', type: :request do
       end
     end
   end
+
+  describe 'DELETE /destroy' do
+    let(:valid_attributes) { { topic: Faker::Lorem.sentence(word_count: 5) } }
+
+    it 'destroys the requested chat' do
+      chat = Chat.create!(valid_attributes)
+
+      expect do
+        delete chat_url(chat)
+      end.to change(Chat, :count).by(-1)
+    end
+
+    it 'renders flash view' do
+      chat = Chat.create!(valid_attributes)
+      delete chat_url(chat)
+
+      expect(response.body).to include('deleted!')
+    end
+  end
 end

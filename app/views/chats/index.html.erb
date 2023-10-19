@@ -10,10 +10,7 @@
 </div>
 <div id='chats'>
   <% @chats.each do |chat| %>
-    <div class="container mt-1">
-      <%= render chat %>
-    </div>
+    <%= render chat %>
   <% end %>
 </div>
-
 <%= render partial: "shared/streaming_toast" %>

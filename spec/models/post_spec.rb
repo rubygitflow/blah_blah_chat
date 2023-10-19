@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'associations' do
-    it { is_expected.to belong_to(:chat).touch(true) }
+    it { is_expected.to belong_to(:chat).touch(true).counter_cache(true) }
   end
 
   describe 'validations' do

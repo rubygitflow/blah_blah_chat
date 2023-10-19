@@ -3,7 +3,7 @@
 class Post < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  belongs_to :chat, touch: true
+  belongs_to :chat, touch: true, counter_cache: true
 
   validates :body, presence: true,
                    length: { minimum: 1, allow_blank: false }

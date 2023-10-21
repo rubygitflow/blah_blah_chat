@@ -10,6 +10,10 @@ class Post < ApplicationRecord
 
   after_create_commit :show_toast
 
+  def short_body(count = 40)
+    @short_body ||= body.size > count ? "#{body[0, count]}..." : body
+  end
+
   private
 
   def show_toast

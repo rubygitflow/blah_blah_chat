@@ -19,6 +19,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = @chat.posts.find_by(id: params[:id])
+    # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
+    success = Posts::DeleteService.drop(@chat, @post)
+
+    if success
+      flash.now[:success] = "Post \"#{@post.short_body(20)}\" deleted!"
+    else
+      head(:unprocessable_entity)
+    end
+  end
+
   private
 
   def find_chat

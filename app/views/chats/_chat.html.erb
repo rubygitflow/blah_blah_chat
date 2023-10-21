@@ -15,7 +15,7 @@
           (<%= chat.posts_count %>)
         </div>
         <div>
-          <%= link_to bi_icon('trash'), chat_path(chat), title: "Destroy chat",
+          <%= link_to bi_icon('trash', style: 'color: firebrick'), chat_path(chat), title: "Destroy chat",
             data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete chat\n\"#{chat.topic}\" ?"} %>
         </div>
       </div>

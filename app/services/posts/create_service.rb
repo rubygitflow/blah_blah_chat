@@ -19,7 +19,7 @@ module Posts
 
     private
 
-    def post_call
+    def broadcast_call
       # путь берем из html
       # <%= turbo_stream_from(@chat, :posts) %>
       broadcast_later [@chat, :posts],

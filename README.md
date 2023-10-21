@@ -1,8 +1,9 @@
 # blah_blah_chat
-Demo App with Hotwire
+Demo App written in **Hotwire**
 
-Here you can add topics and post messages.
-Hotwire allows you to monitor the messages from any chat users.
+Here we can add topics and post messages.
+**Stimulus** allows us to process quotes on a single page.
+**Turbo** allows us to monitor the changes from any chat in real time.
 
 ## Setup
 Configure the database in `config/database.yml`

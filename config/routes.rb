@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root 'chats#index'
 
   resources :chats do
-    resources :posts, only: %i[new create]
+    resources :posts, only: %i[new create destroy]
   end
 
   namespace :api do

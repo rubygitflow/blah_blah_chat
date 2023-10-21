@@ -33,8 +33,10 @@ class ChatsController < ApplicationController
   def edit; end
 
   def update
-    if @chat&.update(chat_params)
-      redirect_to chats_path
+    success, @chat = Chats::UpdateService.call(@chat, chat_params)
+
+    if success
+      flash.now[:success] = 'The Chat topic successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end

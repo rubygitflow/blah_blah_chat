@@ -122,12 +122,12 @@ RSpec.describe 'Chats', type: :request do
         expect(chat.topic).to eq(new_attributes[:topic])
       end
 
-      it 'redirects to the chats page' do
+      it 'returns no content' do
         chat = Chat.create!(valid_attributes)
 
         patch chat_url(chat), params: { chat: new_attributes }
         chat.reload
-        expect(response).to redirect_to(chats_url)
+        expect(response).to have_http_status(:no_content)
       end
     end
 

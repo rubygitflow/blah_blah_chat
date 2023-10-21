@@ -18,9 +18,10 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = Chat.new(chat_params)
+    # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
+    success, @chat = Chats::CreateService.call(chat_params)
 
-    if @chat&.save
+    if success
       flash[:success] = 'The Chat successfully created.'
       redirect_to @chat
     else

@@ -22,7 +22,7 @@
     <div>
       <%= turbo_frame_tag Post.new %>
     </div>
-    <!-- подписка на обновления страницы соответствующими данными из канала с названием-->
+    <!-- подписка на обновление страницы соответствующими данными из канала с названием-->
     <%= turbo_stream_from(@chat, :posts) %>
     <%= turbo_frame_tag 'posts', data: {controller: 'posts'} do %>
       <%= render @posts %>

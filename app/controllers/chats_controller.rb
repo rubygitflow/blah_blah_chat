@@ -40,8 +40,14 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    @chat&.destroy
-    flash.now[:success] = "Chat \"#{@chat.topic}\" deleted!" if @chat&.destroyed?
+    # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
+    success = Chats::DeleteService.drop(@chat)
+
+    if success
+      flash.now[:success] = "Chat \"#{@chat.topic}\" deleted!"
+    else
+      head(:unprocessable_entity)
+    end
   end
 
   private

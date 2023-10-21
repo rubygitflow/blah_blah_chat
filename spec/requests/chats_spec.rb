@@ -160,5 +160,13 @@ RSpec.describe 'Chats', type: :request do
 
       expect(response.body).to include('deleted!')
     end
+
+    context 'with the wrong path' do
+      it 'returns http unprocessable_entity' do
+        delete chat_url(0)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end

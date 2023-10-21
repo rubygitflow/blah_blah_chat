@@ -1,5 +1,5 @@
-<!-- и обрабатываем этот html из posts_controller.js -->
 <%= turbo_frame_tag post do %>
+  <!-- и обрабатываем этот html из posts_controller.js -->
   <%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
     <div class="d-flex align-items-end justify-content-between">
       <div class="d-inline-flex align-items-start">

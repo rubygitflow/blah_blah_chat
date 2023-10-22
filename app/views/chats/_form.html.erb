@@ -1,9 +1,9 @@
 <%= form_with(model: chat) do |form| %>
+  <%= render "shared/errors", resource: chat %>
   <div>
     <%= form.label "Enter the topic:" %>
     <%= form.text_area :topic, required: true, minlength: 1, rows: 3, class: "w-100" %>
   </div>
-
   <div class="mt-2">
     <%= form.submit 'Save', class: "btn btn-danger w-100" %>
   </div>

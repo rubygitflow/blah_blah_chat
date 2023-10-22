@@ -1,0 +1,4 @@
+<% if resource&.topic %>
+  <%= link_to resource.topic, chat_path(resource.id),
+    class:"text-decoration-none link-secondary", data: { turbo_frame: "_top" } %>
+<% end %>

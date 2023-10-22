@@ -7,6 +7,10 @@ class ApplicationService
     new(...).call
   end
 
+  def self.drop(...)
+    new(...).drop
+  end
+
   def initialize(*_); end
 
   def call
@@ -14,6 +18,13 @@ class ApplicationService
 
     # гарантируем обязательный возврат массива без ошибок
     [@object.errors.none?, @object]
+  end
+
+  def drop
+    return unless @object.present?
+
+    # гарантируем обязательный возврат статуса результата без ошибок
+    @object&.destroyed?
   end
 
   private
@@ -25,7 +36,7 @@ class ApplicationService
       result = yield
 
       # обращаемся к AfterCommitEverywhere
-      after_commit { post_call } if result && respond_to?(:post_call, true)
+      after_commit { broadcast_call } if result && respond_to?(:broadcast_call, true)
     end
   end
 
@@ -36,6 +47,15 @@ class ApplicationService
       channel,
       template:,
       **params
+    )
+  end
+
+  def broadcast_remove(channel, target)
+    # https://www.hotrails.dev/turbo-rails/turbo-streams
+    # _later would be impossible
+    Turbo::StreamsChannel.broadcast_remove_to(
+      channel,
+      target:
     )
   end
 end

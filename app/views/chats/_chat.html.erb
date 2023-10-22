@@ -1,3 +1,24 @@
-<div class="lh-1 fs-4 fw-bold">
-    <%= link_to chat.topic, chat_path(chat.id), class:"text-decoration-none link-secondary" %>
-</div>
+<%= turbo_frame_tag chat do %>
+  <div class="container mt-1">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-inline-flex align-items-center">
+        <div class="pe-2">
+          <%= link_to bi_icon('pencil', style: 'color: firebrick'),
+            edit_chat_path(chat), title: "Change the chat name" %>
+        </div>
+        <div class="lh-1 fs-4 fw-bold pe-2">
+          <%= render "chats/chat_topic", resource: chat %>
+        </div>
+      </div>
+      <div class="d-inline-flex align-items-center">
+        <div class="pe-2"  title="Number of posts" id="chat_<%= chat.id %>_posts_count">
+          (<%= chat.posts_count %>)
+        </div>
+        <div>
+          <%= link_to bi_icon('trash', style: 'color: firebrick'), chat_path(chat), title: "Destroy chat",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete chat\n\"#{chat.topic}\" ?"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

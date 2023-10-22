@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-module Posts
+module Chats
   class CreateService < ::ApplicationService
-    def initialize(chat, params)
+    def initialize(params)
       super
-      @chat = chat
       @params = params
     end
 
     def call
       commit_in_transaction do
-        @object = @chat.posts.build @params
+        @object = Chat.build @params
         @object.save
       end
 
@@ -21,10 +20,10 @@ module Posts
 
     def broadcast_call
       # путь берем из html
-      # <%= turbo_stream_from(@chat, :posts) %>
-      broadcast_later [@chat, :posts],
-                      'posts/created',
-                      locals: { post: @object }
+      # <%= turbo_stream_from('chats') %>
+      broadcast_later 'chats',
+                      'chats/created',
+                      locals: { chat: @object }
     end
   end
 end

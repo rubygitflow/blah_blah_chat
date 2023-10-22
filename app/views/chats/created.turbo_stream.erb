@@ -1,0 +1,3 @@
+<!-- "chats" - из turbo_frame_tag 'chats' -->
+<!-- chat пробрасываем из Chats::CreateService.broadcast_call -->
+<%= turbo_stream.prepend "chats", partial: "chats/chat", locals: {chat: chat} %>

@@ -98,4 +98,75 @@ RSpec.describe 'Chats', type: :request do
       end
     end
   end
+
+  describe 'GET /edit' do
+    let(:chat) { create(:chat) }
+
+    it 'renders a successful response' do
+      get edit_chat_url(chat)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'PATCH /update' do
+    let(:valid_attributes) { { topic: Faker::Lorem.sentence(word_count: 5) } }
+
+    context 'with valid parameters' do
+      let(:new_attributes) { { topic: 'New topic' } }
+
+      it 'updates the requested chat' do
+        chat = Chat.create!(valid_attributes)
+
+        patch chat_url(chat), params: { chat: new_attributes }
+        chat.reload
+        expect(chat.topic).to eq(new_attributes[:topic])
+      end
+
+      it 'renders flash view' do
+        chat = Chat.create!(valid_attributes)
+
+        patch chat_url(chat), params: { chat: new_attributes }
+        chat.reload
+        expect(response.body).to include('updated')
+      end
+    end
+
+    context 'with invalid parameters' do
+      let(:invalid_attributes) { { topic: '' } }
+
+      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        chat = Chat.create!(valid_attributes)
+
+        patch chat_url(chat), params: { chat: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    let(:valid_attributes) { { topic: Faker::Lorem.sentence(word_count: 5) } }
+
+    it 'destroys the requested chat' do
+      chat = Chat.create!(valid_attributes)
+
+      expect do
+        delete chat_url(chat)
+      end.to change(Chat, :count).by(-1)
+    end
+
+    it 'renders flash view' do
+      chat = Chat.create!(valid_attributes)
+      delete chat_url(chat)
+
+      expect(response.body).to include('deleted!')
+    end
+
+    context 'with the wrong path' do
+      it 'returns http unprocessable_entity' do
+        delete chat_url(0)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let(:chat) { create(:chat) }
+  let!(:chat) { create(:chat) }
 
   describe 'GET /new' do
     before { get "/chats/#{chat.id}/posts/new" }
@@ -57,6 +57,30 @@ RSpec.describe 'Posts', type: :request do
 
       it 'returns http unprocessable_entity' do
         post chat_posts_url(chat.id), params: { post: invalid_attributes }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    let!(:post) { create(:post, chat:) }
+
+    it 'destroys the requested post' do
+      expect do
+        delete chat_post_url(chat.id, post.id)
+      end.to change(Post, :count).by(-1)
+    end
+
+    it 'renders flash view' do
+      delete chat_post_url(chat.id, post.id)
+
+      expect(response.body).to include('deleted!')
+    end
+
+    context 'with the wrong path' do
+      it 'returns http unprocessable_entity' do
+        delete chat_post_url(post.id, chat.id)
 
         expect(response).to have_http_status(:unprocessable_entity)
       end

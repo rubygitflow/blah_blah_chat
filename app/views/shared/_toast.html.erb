@@ -3,7 +3,7 @@
     <div id="receiveToast" class="toast" data-toast-target='toast' data-controller='toast'
          data-toast-id-value='<%= post&.id || '' %>'>
       <div class="toast-header">
-        <strong class="me-auto"><%= render chat if chat %></strong>
+        <strong class="me-auto"><%= render "chats/chat_topic", resource: chat %></strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
       </div>
       <div class="toast-body"><%= post&.body || '' %></div>

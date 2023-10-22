@@ -1,12 +1,20 @@
-<!-- и обрабатываем этот html из posts_controller.js -->
-<%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
-  <div class="d-flex align-items-start justify-content-start">
-    <div class="fw-lighter me-2">
-      <%= l(post.created_at, format: :medium) %>
+<%= turbo_frame_tag post do %>
+  <!-- и обрабатываем этот html из posts_controller.js -->
+  <%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
+    <div class="d-flex align-items-end justify-content-between">
+      <div class="d-inline-flex align-items-start">
+        <div class="fw-lighter pe-2">
+          <%= l(post.created_at, format: :medium) %>
+        </div>
+        <div>
+          <%= post.body %>
+        </div>
+      </div>
+      <div>
+        <%= link_to bi_icon('trash', style: 'color: navy'), chat_post_path(post.chat, post), title: "Destroy post",
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete post\n\"#{post.short_body(40)}\" ?"} %>
+      </div>
     </div>
-    <div>
-      <%= post.body %>
-    </div>
-  </div>
-  <hr>
+    <hr>
+  <% end %>
 <% end %>

@@ -8,12 +8,10 @@
     </div>
   </div>
 </div>
-<div id='chats'>
-  <% @chats.each do |chat| %>
-    <div class="container mt-1">
-      <%= render chat %>
-    </div>
-  <% end %>
-</div>
-
+<!-- подписка на обновление страницы соответствующими данными из канала с названием-->
+<%= turbo_stream_from('chats') %>
+<%= turbo_stream_from "chat_posts_count" %>
+<%= turbo_frame_tag 'chats' do %>
+  <%= render @chats %>
+<% end %>
 <%= render partial: "shared/streaming_toast" %>

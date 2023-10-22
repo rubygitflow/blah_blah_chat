@@ -122,12 +122,12 @@ RSpec.describe 'Chats', type: :request do
         expect(chat.topic).to eq(new_attributes[:topic])
       end
 
-      it 'returns no content' do
+      it 'renders flash view' do
         chat = Chat.create!(valid_attributes)
 
         patch chat_url(chat), params: { chat: new_attributes }
         chat.reload
-        expect(response).to have_http_status(:no_content)
+        expect(response.body).to include('updated')
       end
     end
 

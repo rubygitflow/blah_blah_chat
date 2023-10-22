@@ -15,6 +15,8 @@ class PostsController < ApplicationController
     if success
       flash.now[:success] = 'Your Post successfully created.'
     else
+      # flash.now[:danger] = 'Something went wrong'
+      # or
       render :new, status: :unprocessable_entity
     end
   end

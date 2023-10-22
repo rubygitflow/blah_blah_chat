@@ -25,7 +25,8 @@ class ChatsController < ApplicationController
       flash[:success] = 'The Chat successfully created.'
       redirect_to @chat
     else
-      flash.now[:danger] = 'Something went wrong'
+      # flash.now[:danger] = 'Something went wrong'
+      # or
       render :new, status: :unprocessable_entity
     end
   end
@@ -38,6 +39,8 @@ class ChatsController < ApplicationController
     if success
       flash.now[:success] = 'The Chat topic successfully updated.'
     else
+      # flash.now[:danger] = 'Something went wrong'
+      # or
       render :edit, status: :unprocessable_entity
     end
   end

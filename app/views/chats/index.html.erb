@@ -10,6 +10,7 @@
 </div>
 <!-- подписка на обновление страницы соответствующими данными из канала с названием-->
 <%= turbo_stream_from('chats') %>
+<%= turbo_stream_from "chat_posts_count" %>
 <%= turbo_frame_tag 'chats' do %>
   <%= render @chats %>
 <% end %>

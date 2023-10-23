@@ -1,3 +1,1 @@
-<!-- "posts" - из turbo_frame_tag 'posts' -->
-<!-- post пробрасываем из Posts::CreateService.broadcast_call -->
 <%= turbo_stream.prepend "posts", partial: "posts/post", locals: {post: post} %>

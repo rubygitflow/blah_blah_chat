@@ -1,3 +1,1 @@
-<!-- "chats" - из turbo_frame_tag 'chats' -->
-<!-- chat пробрасываем из Chats::UpdateService.broadcast_call -->
 <%= turbo_stream.replace chat, partial: "chats/chat", locals: {chat: chat} %>

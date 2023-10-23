@@ -20,4 +20,24 @@ RSpec.describe 'chats/index.html.erb', type: :feature do
   it 'shows a new Chat button' do
     expect(find(:css, '.btn-danger')).to have_content('Add new chat')
   end
+
+  it 'shows zero posts count' do
+    chats.each do |elem|
+      expect(find(:css, "#chat_#{elem.id}_posts_count")).to have_content('(0)')
+    end
+    # let!(:posts) do
+    #   [1..3].map { create(:post, chat: chats[0]) }
+    # end
+  end
+
+  context 'with adding posts' do
+    let!(:posts) do
+      (1..3).map { |_e| create(:post, chat: chats[0]) }
+    end
+
+    it 'shows real number of posts' do
+      visit chats_path
+      expect(find(:css, "#chat_#{chats[0].id}_posts_count")).to have_content('(3)')
+    end
+  end
 end

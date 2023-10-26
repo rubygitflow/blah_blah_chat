@@ -9,7 +9,6 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat.posts_count!
     return unless @chat
 
     @posts = PostDecorator.decorate_collection(

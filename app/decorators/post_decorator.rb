@@ -10,4 +10,12 @@ class PostDecorator < Draper::Decorator
       '𓇼'
     end
   end
+
+  def style_highlight
+    if object.highlight.present?
+      'border-warning'
+    else
+      ''
+    end
+  end
 end

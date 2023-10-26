@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_19_144647) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_23_210633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_19_144647) do
     t.integer "posts_count", default: 0
   end
 
+  create_table "highlights", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["post_id"], name: "index_highlights_on_post_id", unique: true
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "chat_id", null: false
     t.text "body", null: false
@@ -29,5 +35,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_19_144647) do
     t.index ["chat_id"], name: "index_posts_on_chat_id"
   end
 
+  add_foreign_key "highlights", "posts"
   add_foreign_key "posts", "chats"
 end

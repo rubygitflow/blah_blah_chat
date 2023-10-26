@@ -10,7 +10,11 @@ class ChatsController < ApplicationController
 
   def show
     @chat.posts_count!
-    @posts = @chat.posts.order(created_at: :desc) if @chat
+    return unless @chat
+
+    @posts = PostDecorator.decorate_collection(
+      @chat.posts.includes(:highlight).order(created_at: :desc)
+    )
   end
 
   def new

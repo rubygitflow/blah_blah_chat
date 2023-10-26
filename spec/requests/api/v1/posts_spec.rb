@@ -39,6 +39,21 @@ RSpec.describe Api::V1::PostsController, type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
         end
       end
+
+      context 'with extra params "highlight"' do
+        let(:new_valid_params) do
+          {
+            'post' => { 'body' => Faker::Lorem.sentence(word_count: 10) },
+            'highlight' => true
+          }
+        end
+
+        it 'saves a post in the database' do
+          expect do
+            do_request(method, api_path, new_valid_params.to_json, headers)
+          end.to change(Highlight, :count).by(1)
+        end
+      end
     end
 
     context 'with invalid parameters' do

@@ -3,8 +3,11 @@
   <%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
     <div class="d-flex align-items-end justify-content-between">
       <div class="d-inline-flex align-items-start">
-        <div class="fw-lighter pe-2">
+        <div class="text-black-50 font-monospace pe-2">
           <%= l(post.created_at, format: :medium) %>
+        </div>
+        <div class="pe-2">
+          <%= render partial: "posts/highlight", locals: { post: post } %>
         </div>
         <div>
           <%= post.body %>

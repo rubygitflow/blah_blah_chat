@@ -10,6 +10,10 @@ Configure the database in `config/database.yml`
 ```bash
 $ rails db:setup
 ```
+or install all yarn and database dependencies with one command
+```bash
+$ bin/setup
+```
 
 ## Run the App
 ```bash
@@ -25,6 +29,7 @@ Open the app `http://localhost:3000 ` in the browser
 ```bash
 $ http -f get ":3000/api/v1/chats"
 $ http -f post ":3000/api/v1/chats/1/posts" "post[body]=New message"
+$ http -f post ":3000/api/v1/chats/1/posts" "post[body]=New message" "highlight="
 ```
 
 ## Run tests

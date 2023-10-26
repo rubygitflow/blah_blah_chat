@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 
   belongs_to :chat, touch: true, counter_cache: true
 
+  has_one :highlight, dependent: :destroy
+
   validates :body, presence: true,
                    length: { minimum: 1, allow_blank: false }
 
@@ -14,6 +16,10 @@ class Post < ApplicationRecord
 
   def short_body(count = 40)
     @short_body ||= body.size > count ? "#{body[0, count]}..." : body
+  end
+
+  def highlighted?
+    @highlighted ||= highlight.exists?
   end
 
   private

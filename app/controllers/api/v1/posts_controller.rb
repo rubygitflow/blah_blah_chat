@@ -9,6 +9,7 @@ module Api
         success, @post = Posts::CreateService.call(@chat, post_params)
 
         if success
+          highlight!
           render json: { post: @post }, status: :created
         else
           render json: { errors: @post.errors }, status: :unprocessable_entity
@@ -16,6 +17,10 @@ module Api
       end
 
       private
+
+      def highlight!
+        @post.create_highlight! if params[:highlight]
+      end
 
       def find_chat
         @chat = Chat.find_by(id: params[:chat_id])

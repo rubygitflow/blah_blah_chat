@@ -15,10 +15,7 @@ class ChatsController < ApplicationController
       @chat.posts.includes(:highlight).order(created_at: :desc),
       items: 10
     )
-    # respond_to do |format|
-    #   format.html # GET
-    #   format.turbo_stream # POST
-    # end
+    render 'show_scrollable_list' if params[:page]
   end
 
   def new

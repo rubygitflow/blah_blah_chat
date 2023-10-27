@@ -26,6 +26,7 @@ AllCops:
   Exclude:
     - bin/**/*
     - db/schema.rb
+    - config/application.rb
 
 Style/HashSyntax:
   Exclude:
@@ -69,3 +70,6 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Max: 30
+
+Style/CombinableLoops:
+  Enabled: false

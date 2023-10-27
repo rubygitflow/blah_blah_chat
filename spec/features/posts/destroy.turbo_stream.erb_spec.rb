@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'posts/destroy.html.erb', type: :feature do
+RSpec.describe 'posts/destroy.turbo_stream.erb', type: :feature do
   let!(:chat) { create(:chat) }
   let!(:post) { create(:post, chat:) }
 

@@ -2,7 +2,30 @@
 
 require_relative 'boot'
 
-require 'rails/all'
+# require 'rails/all'
+
+# Copy text from
+# https://github.com/rails/rails/blob/main/railties/lib/rails/all.rb
+require "rails"
+
+# and remone this list of RoR Parts:
+# active_storage/engine
+# action_mailer/railtie
+# action_mailbox/engine
+# action_text/engine
+# rails/test_unit/railtie
+%w(
+  active_record/railtie
+  action_controller/railtie
+  action_view/railtie
+  active_job/railtie
+  action_cable/engine
+).each do |railtie|
+  begin
+    require railtie
+  rescue LoadError
+  end
+end
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

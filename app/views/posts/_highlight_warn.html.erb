@@ -1,0 +1,12 @@
+<%= link_to( '⭐',
+  highlight_link(post),
+  data: { "turbo-method": :post },
+  class: %w(
+    link-secondary
+    link-underline-opacity-0
+    me-2
+    border-start
+    border-warning
+  ).join(' '),
+  id: highlight_id(post),
+) %>

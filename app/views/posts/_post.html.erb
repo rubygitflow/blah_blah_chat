@@ -6,7 +6,7 @@
         <div class="text-black-50 font-monospace pe-2">
           <%= l(post.created_at, format: :medium) %>
         </div>
-        <%= render partial: "posts/highlight", locals: { post: post } %>
+        <%= highlighted(post) %>
         <div>
           <%= post.body %>
         </div>

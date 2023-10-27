@@ -11,9 +11,7 @@ class ChatsController < ApplicationController
   def show
     return unless @chat
 
-    @posts = PostDecorator.decorate_collection(
-      @chat.posts.includes(:highlight).order(created_at: :desc)
-    )
+    @posts = @chat.posts.includes(:highlight).order(created_at: :desc)
   end
 
   def new

@@ -41,6 +41,8 @@ class ApplicationService
   end
 
   def broadcast_later(channel, template, **params)
+    # https://rubydoc.info/github/hotwired/turbo-rails/Turbo/Broadcastable
+    # or
     # https://www.hotrails.dev/turbo-rails/turbo-streams
     # _later сделает с помощью ActiveJob, если настроить sidekiq
     Turbo::StreamsChannel.broadcast_render_later_to(

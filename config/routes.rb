@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   root 'chats#index'
 
   resources :chats do
-    resources :posts, only: %i[new create destroy]
+    resources :posts, only: %i[new create destroy] do
+      member { post :highlight }
+    end
   end
 
   namespace :api do

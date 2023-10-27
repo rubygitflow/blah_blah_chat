@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :find_chat
+  before_action :find_post, only: %i[highlight destroy]
 
   def new
     @post = @chat.posts.build
@@ -22,7 +23,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = @chat.posts.find_by(id: params[:id])
     # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
     success = Posts::DeleteService.drop(@chat, @post)
 
@@ -33,7 +33,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def highlight
+    success, @highlight = Posts::HighlightService.call(@chat, @post)
+
+    return if success
+
+    head(:unprocessable_entity)
+  end
+
   private
+
+  def find_post
+    @post = @chat.posts.find_by(id: params[:id])
+    head(:unprocessable_entity) unless @post
+  end
 
   def find_chat
     @chat = Chat.find_by(id: params[:chat_id])

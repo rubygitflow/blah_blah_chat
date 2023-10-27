@@ -21,8 +21,8 @@ module Posts
     def broadcast_call
       # путь берем из html
       # <%= turbo_stream_from(@chat, :posts) %>
-      broadcast_remove [@chat, :posts],
-                       @object
+      broadcast_remove([@chat, :posts],
+                       @object)
     end
   end
 end

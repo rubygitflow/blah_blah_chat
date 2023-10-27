@@ -22,9 +22,9 @@ module Posts
     def broadcast_call
       # путь берем из html
       # <%= turbo_stream_from(@chat, :posts) %>
-      broadcast_later [@chat, :posts],
+      broadcast_later([@chat, :posts],
                       'posts/created',
-                      locals: { post: @object }
+                      locals: { post: @object })
     end
   end
 end

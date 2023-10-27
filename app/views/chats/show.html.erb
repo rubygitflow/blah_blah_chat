@@ -27,6 +27,9 @@
     <%= turbo_frame_tag 'posts', data: {controller: 'posts'} do %>
       <%= render @posts %>
     <% end %>
+    <div id="next_link">
+      <%= button_to "Next", pagy_url_for(@pagy, @pagy.next) %>
+    </div>
   </div>
 <% end %>
 <%= render partial: "shared/streaming_toast" %>

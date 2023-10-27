@@ -11,7 +11,14 @@ class ChatsController < ApplicationController
   def show
     return unless @chat
 
-    @posts = @chat.posts.includes(:highlight).order(created_at: :desc)
+    @pagy, @posts = pagy_countless(
+      @chat.posts.includes(:highlight).order(created_at: :desc),
+      items: 10
+    )
+    # respond_to do |format|
+    #   format.html # GET
+    #   format.turbo_stream # POST
+    # end
   end
 
   def new

@@ -4,6 +4,8 @@ class ChatsController < ApplicationController
   before_action :init_toast, only: %i[show index]
   before_action :find_chat, only: %i[show edit update destroy]
 
+  POSTS_PER_PAGE = 10
+
   def index
     @chats = Chat.order(updated_at: :desc)
   end
@@ -11,11 +13,16 @@ class ChatsController < ApplicationController
   def show
     return unless @chat
 
-    @pagy, @posts = pagy_countless(
-      @chat.posts.includes(:highlight).order(created_at: :desc),
-      items: 10
-    )
-    render 'show_scrollable_list' if params[:page]
+    @cursor = (params[:cursor] || ((@chat.posts.last&.id || 0) + 1)).to_i
+    @posts = @chat.posts
+                  .where('posts.id < ?', @cursor)
+                  .includes(:highlight)
+                  .order(id: :desc)
+                  .take(POSTS_PER_PAGE)
+    @next_cursor = @posts.last&.id
+    @more_pages = @next_cursor.present? && @posts.count == POSTS_PER_PAGE
+
+    render 'show_scrollable_list' if params[:cursor]
   end
 
   def new

@@ -1,17 +1,17 @@
-<div class="container control-panel">
-  <div class="d-flex align-items-center justify-content-between">
-    <div class="fs-1 fw-bold text-warning">
+<div class='container control-panel'>
+  <div class='d-flex align-items-center justify-content-between'>
+    <div class='fs-1 fw-bold text-warning'>
       Blah_blah_chat
     </div>
     <div>
-      <%= link_to "Add new chat", new_chat_path, class: 'btn btn-danger' %>
+      <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-danger' %>
     </div>
   </div>
 </div>
-<!-- подписка на обновление страницы соответствующими данными из канала с названием-->
 <%= turbo_stream_from('chats') %>
-<%= turbo_stream_from "chat_posts_count" %>
+<%= turbo_stream_from 'chat_posts_count' %>
 <%= turbo_frame_tag 'chats' do %>
   <%= render @chats %>
 <% end %>
-<%= render partial: "shared/streaming_toast" %>
+<%= render 'chats/next_index_page' %>
+<%= render partial: 'shared/streaming_toast' %>

@@ -5,9 +5,18 @@ class ChatsController < ApplicationController
   before_action :find_chat, only: %i[show edit update destroy]
 
   POSTS_PER_PAGE = 10
+  CHATS_PER_PAGE = 10
 
   def index
-    @chats = Chat.order(updated_at: :desc)
+    @cursor = (params[:cursor] || ((Chat.last&.id || 0) + 1)).to_i
+    @chats = Chat.all
+                 .where('id < ?', @cursor)
+                 .order(updated_at: :desc)
+                 .take(CHATS_PER_PAGE)
+    @next_cursor = @chats.last&.id
+    @more_pages = @next_cursor.present? && @chats.count == CHATS_PER_PAGE
+
+    render 'index_scrollable_list' if params[:cursor]
   end
 
   def show
@@ -30,7 +39,6 @@ class ChatsController < ApplicationController
   end
 
   def create
-    # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
     success, @chat = Chats::CreateService.call(chat_params)
 
     if success
@@ -58,7 +66,6 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    # здесь будем стримить по подписке с помощью gem 'after_commit_everywhere'
     success = Chats::DeleteService.drop(@chat)
 
     if success

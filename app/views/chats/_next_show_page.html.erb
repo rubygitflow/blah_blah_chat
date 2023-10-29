@@ -1,0 +1,11 @@
+<% if @more_pages %>
+  <%= turbo_frame_tag(
+        "posts-page-#{@next_cursor}",
+        autoscroll: true,
+        loading: :lazy,
+        src: chat_path(id: @chat.id, cursor: @next_cursor),
+        target: "_top"
+      ) do %>
+    Loading...
+  <% end %>
+<% end %>

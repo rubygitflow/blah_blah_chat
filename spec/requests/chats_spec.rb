@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Chats', type: :request do
+RSpec.describe ChatsController, type: :request do
   describe 'GET /index' do
     let(:chats) { create_list(:chat, 3) }
 

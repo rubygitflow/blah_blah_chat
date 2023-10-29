@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "posts-page-#{@cursor}" do %>
+  <%= render partial: "posts/post", collection: @posts %>
+  <%= render partial: "chats/next_show_page" %>
+<% end %>

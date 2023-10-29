@@ -3,7 +3,9 @@
         "chats-page-#{@next_cursor}",
         autoscroll: true,
         loading: :lazy,
-        src: chats_path(cursor: @next_cursor),
+        src: chats_path(cursor: @next_cursor,
+                        opened: @used,
+                        newly_created_at: @created_at),
         target: "_top"
       ) do %>
     Loading...

@@ -8,13 +8,19 @@ class ChatsController < ApplicationController
   CHATS_PER_PAGE = 10
 
   def index
-    @cursor = (params[:cursor] || ((Chat.last&.id || 0) + 1)).to_i
+    @cursor = params[:cursor].to_i
+    @used = params[:opened].to_a
+    # define @created_at To exclude newly created chats
+    @created_at = (params[:newly_created_at] || Time.now).to_time
     @chats = Chat.all
-                 .where('id < ?', @cursor)
+                 .where.not(id: @used)
+                 .where('created_at < ?', @created_at)
                  .order(updated_at: :desc)
                  .take(CHATS_PER_PAGE)
-    @next_cursor = @chats.last&.id
+    @next_cursor = @cursor + 1
     @more_pages = @next_cursor.present? && @chats.count == CHATS_PER_PAGE
+    # define @used To show updated but not presented chats
+    @used += @chats.map(&:id)
 
     render 'index_scrollable_list' if params[:cursor]
   end

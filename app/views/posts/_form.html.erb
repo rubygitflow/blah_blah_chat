@@ -1,14 +1,16 @@
 <%= turbo_frame_tag post do %>
-  <%= render "shared/errors", resource: post %>
+  <div class='sticky-top bg-primary-subtle p-2 rounded'>
+    <%= render "shared/errors", resource: post %>
 
-  <%= form_with(model: [post.chat, post]) do |form| %>
-    <div>
-      <%= form.label "Enter your message:" %>
-      <%= form.text_area :body, required: true, minlength: 1, class: "w-100" %>
-    </div>
+    <%= form_with(model: [post.chat, post]) do |form| %>
+      <div>
+        <%= form.label "Enter your message:" %>
+        <%= form.text_area :body, required: true, minlength: 1, class: "w-100" %>
+      </div>
 
-    <div class="mt-2">
-      <%= form.submit 'Save', class: "btn btn-primary w-100" %>
-    </div>
-  <% end %>
+      <div class="mt-2">
+        <%= form.submit 'Save', class: "btn btn-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

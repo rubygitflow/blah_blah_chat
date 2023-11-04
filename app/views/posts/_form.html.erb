@@ -8,7 +8,8 @@
         <%= form.text_area :body, required: true, minlength: 1, class: "w-100" %>
       </div>
 
-      <div class="mt-2">
+      <div class="d-flex mt-2">
+        <%= link_to "Cancel", chat_path(post.chat), class: "me-2 btn btn-secondary" %>
         <%= form.submit 'Save', class: "btn btn-primary w-100" %>
       </div>
     <% end %>

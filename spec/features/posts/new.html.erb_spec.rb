@@ -13,4 +13,11 @@ RSpec.describe 'posts/new.html.erb', type: :feature do
     click_button 'Save'
     expect(page).to have_content('wqgtpPost')
   end
+
+  it 'cancels a new post' do
+    click_link 'Add new post'
+    find(:css, '#post_body').fill_in with: 'Canceled Post'
+    click_link 'Cancel'
+    expect(page).not_to have_content('Canceled Post')
+  end
 end

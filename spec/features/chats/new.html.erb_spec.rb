@@ -8,6 +8,9 @@ RSpec.describe 'chats/new.html.erb', type: :feature do
     click_link 'Add new chat'
     find(:css, '#chat_topic').fill_in with: 'wqgtpChat'
     click_button 'Save'
-    expect(page).to have_content('wqgtpChat')
+    within '#showChat' do
+      expect(page).to have_content('wqgtpChat')
+    end
+    # puts page.html # check out how it works
   end
 end

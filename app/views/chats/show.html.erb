@@ -7,11 +7,11 @@
   <% if @chat %>
     <div class="container control-panel">
       <div class="d-flex align-items-center justify-content-between mr-1">
-        <div class="fs-1 fw-bold text-info">
+        <div class="fs-1 fw-bold text-info me-3">
           Chat:
         </div>
-        <div id="showChat" class="fs-2 fw-bold text-light">
-          <%= @chat.topic %>
+        <div id="showChat" class="fs-2 fw-bold text-light me-3">
+          <%= html_line_wrapping(@chat.topic) %>
         </div>
         <div>
           <%= link_to "Add new post", new_chat_post_path(@chat.id),

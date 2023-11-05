@@ -23,7 +23,6 @@ RSpec.describe 'chats/show.html.erb', type: :feature do
 
   describe 'infinite scrolling', js: true do
     before do
-      sleep 1
       visit chat_path(chat.id)
     end
 
@@ -35,6 +34,8 @@ RSpec.describe 'chats/show.html.erb', type: :feature do
     end
 
     context 'when scrolling the chat page' do
+      # doesn't work on driver
+      # Capybara.javascript_driver = :selenium_chrome_headless
       it 'autoloads the entire list of posts' do
         expect(page).to have_css("#post_#{posts[-1].id}")
         page.execute_script 'window.scrollTo(0,10000)'

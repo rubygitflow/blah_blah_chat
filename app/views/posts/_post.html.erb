@@ -7,9 +7,7 @@
           <%= l(post.created_at, format: :medium) %>
         </div>
         <%= highlighted(post) %>
-        <div>
-          <%= post.pre_line_body %>
-        </div>
+        <%= html_line_wrapping(post.body) %>
       </div>
       <div>
         <%= link_to bi_icon('trash', style: 'color: navy'), chat_post_path(post.chat, post), title: "Destroy post",

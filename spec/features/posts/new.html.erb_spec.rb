@@ -18,6 +18,9 @@ RSpec.describe 'posts/new.html.erb', type: :feature do
     click_link 'Add new post'
     find(:css, '#post_body').fill_in with: 'Canceled Post'
     click_link 'Cancel'
-    expect(page).not_to have_content('Canceled Post')
+    within '#posts' do
+      expect(page).not_to have_content('Canceled Post')
+    end
+    # puts page.html # check out how it works
   end
 end

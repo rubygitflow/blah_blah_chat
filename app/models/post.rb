@@ -18,11 +18,6 @@ class Post < ApplicationRecord
     @short_body ||= body.size > count ? "#{body[0, count]}..." : body
   end
 
-  def pre_line_body
-    puts "body=#{body.gsub("\n", '<br>').html_safe.inspect}"
-    @pre_line_body ||= body.gsub("\n", '<br>').html_safe
-  end
-
   def highlighted?
     @highlighted ||= highlight.exists?
   end

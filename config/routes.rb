@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       member { post :highlight }
     end
   end
+  post 'chats/:id', controller: :chats, action: :show
 
   namespace :api do
     namespace :v1 do

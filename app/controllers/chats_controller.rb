@@ -26,18 +26,20 @@ class ChatsController < ApplicationController
   end
 
   def show
-    return unless @chat
+    if request.method == 'GET'
+      @cursor = (params[:cursor] || ((@chat.posts.last&.id || 0) + 1)).to_i
+      @posts = @chat.posts
+                    .where('posts.id < ?', @cursor)
+                    .includes(:highlight)
+                    .order(id: :desc)
+                    .take(POSTS_PER_PAGE)
+      @next_cursor = @posts.last&.id
+      @more_pages = @next_cursor.present? && @posts.count == POSTS_PER_PAGE
 
-    @cursor = (params[:cursor] || ((@chat.posts.last&.id || 0) + 1)).to_i
-    @posts = @chat.posts
-                  .where('posts.id < ?', @cursor)
-                  .includes(:highlight)
-                  .order(id: :desc)
-                  .take(POSTS_PER_PAGE)
-    @next_cursor = @posts.last&.id
-    @more_pages = @next_cursor.present? && @posts.count == POSTS_PER_PAGE
-
-    render 'show_scrollable_list' if params[:cursor]
+      render 'show_scrollable_list' if params[:cursor]
+    else
+      render turbo_stream: turbo_stream.update(@chat)
+    end
   end
 
   def new
@@ -85,6 +87,7 @@ class ChatsController < ApplicationController
 
   def find_chat
     @chat = Chat.find_by(id: params[:id])
+    head(:unprocessable_entity) unless @chat
   end
 
   def chat_params

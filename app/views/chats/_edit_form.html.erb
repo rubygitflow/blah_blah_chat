@@ -3,11 +3,17 @@
     <%= form_with(model: chat) do |form| %>
       <%= render "shared/errors", resource: chat %>
       <div>
-        <%= form.label "Enter the topic:", class: "fw-bold" %>
+        <%= form.label "Rename the topic:", class: "fw-bold" %>
         <%= form.text_area :topic, required: true, minlength: 1, rows: 3, class: "w-100" %>
       </div>
-      <div class="mt-2">
+      <div class="d-flex mt-2">
+        <%= link_to "Cancel", chat_path(chat),
+          class: "me-2 btn text-white",
+          style: "background-color: saddlebrown;",
+          data: { turbo_method: :post },
+          id: "cancel_chat_topic" %>
         <%= form.submit 'Save', class: "btn btn-danger w-100" %>
+        <input type="hidden" name="format" value="turbo_stream">
       </div>
     <% end %>
   </div>

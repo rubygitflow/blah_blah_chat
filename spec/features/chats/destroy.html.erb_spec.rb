@@ -11,15 +11,19 @@ RSpec.describe 'chats/destroy.html.erb', type: :feature do
     page.has_title? 'Destroy chat'
   end
 
-  it 'destroys the chat' do
+  it 'destroys the chat', js: true do
     expect(page).to have_content(chat.topic)
+    expect(page).to have_css('.bi-trash')
 
-    find_all('a').each do |a|
-      next unless a[:href] == "/chats/#{chat.id}" && a[:'data-turbo-method'] == 'delete'
+    within "#chat_#{chat.id}" do
+      accept_confirm do
+        page.find('.bi-trash').click
+      end
+    end
+    # puts page.html # check out how it works
 
-      a.click
+    within '#chats' do
       expect(page).not_to have_content(chat.topic)
-      break
     end
   end
 end

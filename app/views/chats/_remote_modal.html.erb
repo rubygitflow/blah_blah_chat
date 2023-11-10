@@ -1,0 +1,20 @@
+<%= turbo_frame_tag 'remote_modal' do %>
+  <div class="modal fade" 
+    id="staticBackdrop" 
+    tabindex="-1" 
+    aria-labelledby="newChatRemoteModalLabel" 
+    aria-hidden="true" 
+    data-controller="remote-modal" 
+    data-action="turbo:before-render@document->remote-modal#hideBeforeRender
+                 keyup@window->remote-modal#closeWithKeyboard">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="newChatRemoteModalLabel"><%= title %></h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Back to chats"></button>
+        </div>
+        <div class="modal-body remote_modal_body" id="remote_modal_body">
+          <%= yield %>
+      </div>
+    </div>
+<% end %>

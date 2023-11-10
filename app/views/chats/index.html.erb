@@ -4,7 +4,9 @@
       Blah_blah_chat
     </div>
     <div>
-      <%= link_to 'Add new chat', new_chat_path, class: 'btn btn-danger' %>
+      <%= link_to 'Add new topic', new_chat_path,
+        class: 'btn btn-danger',
+        data: { turbo_frame: 'remote_modal' } %>
     </div>
   </div>
 </div>

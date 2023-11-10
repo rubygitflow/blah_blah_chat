@@ -1,11 +1,3 @@
-<div class="container control-panel">
-  <div>
-    <%= link_to "Back to chats", chats_path, class:"text-decoration-none link-light" %>
-  </div>
-</div>
-<div class="container">
-  <h2>New chat</h2>
-  <div class='bg-danger-subtle p-2 rounded'>
-    <%= render "form", chat: @chat %>
-  </div>
-</div>
+<%= render "remote_modal", title: "New chat" do %>
+  <%= render "form", chat: @chat %>
+<% end %>

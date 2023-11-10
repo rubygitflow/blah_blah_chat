@@ -21,7 +21,7 @@ RSpec.describe 'chats/index.html.erb', type: :feature do
     end
 
     it 'shows a new Chat button' do
-      expect(find(:css, '.btn-danger')).to have_content('Add new chat')
+      expect(find(:css, '.btn-danger')).to have_content('Add new topic')
     end
 
     it 'shows zero posts count' do
@@ -60,6 +60,7 @@ RSpec.describe 'chats/index.html.erb', type: :feature do
       it 'autoloads the entire list of chats' do
         expect(page).to have_css("#chat_#{extra_chats[-1].id}")
         page.execute_script 'window.scrollTo(0,10000)'
+        sleep 0.5
         expect(page).to have_css("#chat_#{extra_chats[0].id}")
       end
     end

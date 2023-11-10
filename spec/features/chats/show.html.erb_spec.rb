@@ -39,6 +39,8 @@ RSpec.describe 'chats/show.html.erb', type: :feature do
       it 'autoloads the entire list of posts' do
         expect(page).to have_css("#post_#{posts[-1].id}")
         page.execute_script 'window.scrollTo(0,10000)'
+        sleep 0.5
+        # the next expectation is interrupted periodically. No idea :(
         expect(page).to have_css("#post_#{posts[0].id}")
       end
     end

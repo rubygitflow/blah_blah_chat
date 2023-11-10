@@ -2,7 +2,7 @@
 Demo App written in **Hotwire**
 
 Here we can add topics and post messages.
-**Stimulus** allows us to process quotes on a single page.
+**Stimulus** allows us to process posts on a single page.
 **Turbo** allows us to monitor the changes from any chat in real time.
 
 ## Setup

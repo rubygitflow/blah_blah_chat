@@ -10,3 +10,6 @@ application.register("toast", ToastController)
 
 import AutohideController from "./autohide_controller"
 application.register("autohide", AutohideController)
+
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)

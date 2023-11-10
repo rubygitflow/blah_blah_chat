@@ -7,17 +7,23 @@ RSpec.describe 'posts/new.html.erb', type: :feature do
 
   before { visit chat_path(chat.id) }
 
-  it 'creates a new post' do
+  it 'creates a new post', js: true do
     click_link 'Add new post'
-    find(:css, '#post_body').fill_in with: 'wqgtpPost'
-    click_button 'Save'
-    expect(page).to have_content('wqgtpPost')
+    within '#new_post' do
+      find(:css, '#post_body').fill_in with: 'wqgtpPost'
+      click_button 'Save'
+    end
+    within '#posts' do
+      expect(page).to have_content('wqgtpPost')
+    end
   end
 
-  it 'cancels a new post' do
+  it 'cancels a new post', js: true do
     click_link 'Add new post'
-    find(:css, '#post_body').fill_in with: 'Canceled Post'
-    click_link 'Cancel'
+    within '#new_post' do
+      find(:css, '#post_body').fill_in with: 'Canceled Post'
+      click_link 'Cancel'
+    end
     within '#posts' do
       expect(page).not_to have_content('Canceled Post')
     end

@@ -38,12 +38,12 @@ RSpec.describe ChatsController, type: :request do
   describe 'GET /new' do
     before { get '/chats/new' }
 
-    it 'renders a successful response' do
-      expect(response).to have_http_status(:success)
+    it 'renders a successful Redirection response' do
+      expect(response).to have_http_status(:found)
     end
 
-    it 'renders new chat view' do
-      expect(response).to render_template(:new)
+    it 'redirects to chats view' do
+      expect(response).to redirect_to('/')
     end
   end
 
@@ -102,9 +102,9 @@ RSpec.describe ChatsController, type: :request do
   describe 'GET /edit' do
     let(:chat) { create(:chat) }
 
-    it 'renders a successful response' do
+    it 'renders a successful Redirection response' do
       get edit_chat_url(chat)
-      expect(response).to be_successful
+      expect(response).to have_http_status(:found)
     end
   end
 

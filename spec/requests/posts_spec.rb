@@ -5,15 +5,15 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :request do
   let!(:chat) { create(:chat) }
 
-  describe 'GET /new' do
+  describe 'GET http /new' do
     before { get "/chats/#{chat.id}/posts/new" }
 
-    it 'renders a successful response' do
-      expect(response).to have_http_status(:success)
+    it 'renders a successful Redirection response' do
+      expect(response).to have_http_status(:found)
     end
 
-    it 'renders new post view' do
-      expect(response).to render_template(:new)
+    it 'redirects to chats view' do
+      expect(response).to redirect_to('/')
     end
   end
 

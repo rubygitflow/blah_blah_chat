@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
+  before_action :ensure_frame_response, only: %i[new edit]
   before_action :init_toast, only: %i[show index]
   before_action :find_chat, only: %i[show edit update destroy]
 
@@ -49,13 +50,14 @@ class ChatsController < ApplicationController
   def create
     success, @chat = Chats::CreateService.call(chat_params)
 
-    if success
-      flash[:success] = 'The Chat successfully created.'
-      redirect_to @chat
-    else
-      # flash.now[:danger] = 'Something went wrong'
-      # or
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if success
+        flash[:success] = 'The Chat successfully created.'
+        format.html { redirect_to @chat }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
     end
   end
 

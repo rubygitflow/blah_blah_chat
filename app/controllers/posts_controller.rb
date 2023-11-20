@@ -46,12 +46,12 @@ class PostsController < ApplicationController
 
   def find_post
     @post = @chat.posts.find_by(id: params[:id])
-    head(:unprocessable_entity) unless @post
+    head(:not_found) unless @post
   end
 
   def find_chat
     @chat = Chat.find_by(id: params[:chat_id])
-    head(:unprocessable_entity) unless @chat
+    head(:not_found) unless @chat
   end
 
   def post_params

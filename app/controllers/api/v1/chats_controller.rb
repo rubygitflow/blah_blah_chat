@@ -5,7 +5,7 @@ module Api
     class ChatsController < ApplicationController
       def index
         @chats = Chat.order(created_at: :desc)
-        render json: { chats: @chats }
+        render json: { items: @chats, items_count: @chats.size }
       end
     end
   end

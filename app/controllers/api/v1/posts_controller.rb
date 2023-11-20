@@ -24,7 +24,7 @@ module Api
 
       def find_chat
         @chat = Chat.find_by(id: params[:chat_id])
-        render json: { errors: ['No chat by id found'] }, status: :unprocessable_entity unless @chat
+        render json: { errors: { chat_id: ['No chat by id found'] } }, status: :not_found unless @chat
       end
 
       def post_params

@@ -79,10 +79,10 @@ RSpec.describe PostsController, type: :request do
     end
 
     context 'with the wrong path' do
-      it 'returns http unprocessable_entity' do
+      it 'returns http not_found' do
         delete chat_post_url(post.id, chat.id)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

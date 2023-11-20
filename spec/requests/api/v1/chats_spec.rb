@@ -21,12 +21,16 @@ RSpec.describe Api::V1::ChatsController, type: :request do
     end
 
     it 'returns list of chats' do
-      expect(json['chats'].size).to eq(3)
+      expect(json['items'].size).to eq(3)
+    end
+
+    it 'returns size of chat list' do
+      expect(json['items_count']).to eq(3)
     end
 
     it 'contains all public fields' do
       %w[id topic created_at updated_at].each do |attr|
-        expect(json['chats'].first[attr]).to eq(chat.send(attr).as_json)
+        expect(json['items'].first[attr]).to eq(chat.send(attr).as_json)
       end
     end
   end

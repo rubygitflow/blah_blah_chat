@@ -33,10 +33,10 @@ RSpec.describe Api::V1::PostsController, type: :request do
       end
 
       context 'with wrong chat id in path' do
-        it 'returns http unprocessable_entity' do
+        it 'returns http not_found' do
           do_request(method, wrong_api_path, valid_params.to_json, headers)
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:not_found)
         end
       end
 
@@ -65,10 +65,10 @@ RSpec.describe Api::V1::PostsController, type: :request do
         end.to change(Post, :count).by(0)
       end
 
-      it 'returns http unprocessable_entity' do
+      it 'returns http not_found' do
         do_request(method, wrong_api_path, invalid_params, headers)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'returns an error' do

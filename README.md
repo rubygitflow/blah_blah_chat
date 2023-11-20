@@ -31,6 +31,7 @@ $ http -f get ":3000/api/v1/chats"
 $ http -f post ":3000/api/v1/chats/1/posts" "post[body]=New message"
 $ http -f post ":3000/api/v1/chats/1/posts" "post[body]=New message" "highlight="
 ```
+More details can be found in `/blah-blah-chat-api-spec.jst`.
 
 ## Run tests
 ```bash

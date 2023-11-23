@@ -18,6 +18,6 @@ module ApplicationHelper
            else
              text
            end
-    "<div class=\"text-break\">#{text}</div>".html_safe
+    "<div class=\"text-break col\">#{text}</div>".html_safe
   end
 end

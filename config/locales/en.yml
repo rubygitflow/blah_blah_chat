@@ -35,4 +35,4 @@ en:
       medium: "%b %d %Y"
   time:
     formats:
-      medium: "%b %d %Y; %H:%M"
+      medium: "%b %d %Y<br>%H:%M"

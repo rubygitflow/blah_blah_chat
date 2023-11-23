@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe ApplicationHelper do
   describe 'html_line_wrapping: formatting text content' do
-    let(:text_break_tag) { '<div class="text-break">' }
+    let(:text_break_tag) { '<div class="text-break col">' }
 
     it 'replaces line breaks with the <br> tag' do
       input = "string 1\ntring 2"

@@ -1,19 +1,18 @@
 <%= turbo_frame_tag post do %>
   <!-- и обрабатываем этот html из posts_controller.js -->
   <%= tag.section data: {'posts-target': 'post', controller: 'posts'} do %>
-    <div class="d-flex align-items-end justify-content-between">
-      <div class="d-inline-flex align-content-stretch">
-        <div class="text-black-50 font-monospace pe-2">
-          <%= l(post.created_at, format: :medium) %>
+    <div class="d-flex align-items-end justify-content-between border-bottom mb-2 row">
+      <div class="d-inline-flex align-content-stretch col row">
+        <div class="text-black-50 pe-2 lh-1 col-md-auto">
+          <small><%= l(post.created_at, format: :medium).html_safe %></small>
         </div>
         <%= highlighted(post) %>
         <%= html_line_wrapping(post.body) %>
       </div>
-      <div>
+      <div class="col-md-auto">
         <%= link_to bi_icon('trash', style: 'color: navy'), chat_post_path(post.chat, post), title: "Destroy post",
           data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete post\n\"#{post.short_body(40)}\" ?"} %>
       </div>
     </div>
-    <hr>
   <% end %>
 <% end %>

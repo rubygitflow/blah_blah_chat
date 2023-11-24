@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres:15-bookworm
+    volumes:
+      - postgres_bbc:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bbc", "-p", "5432", "-d", "blah_blah_chat_production"]
+      interval: 5s
+    environment:
+      POSTGRES_USER: bbc
+      POSTGRES_PASSWORD: bbc_password
+    ports: 
+      - '5432:5432'
+    networks:
+      - postgres
+
+  redis:
+    image: redis:7.2.3-bookworm
+    volumes:
+      - redis_bbc:/data
+    command: redis-server
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 5s
+    networks:
+      - redis
+
+  app:
+    image: blah-blah-chat:1.0
+    ports:
+      - '3321:3000'
+    env_file: .env
+    depends_on:
+      - postgresql
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-i", "-f", "http://localhost:3000/up"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    networks:
+      - postgres
+      - redis
+
+volumes:
+  postgres_bbc:
+  redis_bbc:
+
+networks:
+  postgres:
+    driver: bridge
+  redis:
+    driver: bridge

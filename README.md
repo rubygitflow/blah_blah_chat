@@ -42,3 +42,21 @@ $ rspec spec
 ```bash
 $ rubocop
 ```
+
+## Create docker image
+```bash
+$ docker build . -t blah-blah-chat:1.0
+```
+
+## Run docker container
+```bash
+$ docker compose up
+```
+
+## Look at Health monitoring
+```bash
+$ watch -n1 docker ps
+```
+
+## Run application from docker container
+`localhost:3321`

@@ -80,5 +80,7 @@ test:
 production:
   <<: *default
   database: blah_blah_chat_production
-  username: blah_blah_chat
+  username: <%= ENV["BLAH_BLAH_CHAT_DATABASE_USERNAME"] %>
   password: <%= ENV["BLAH_BLAH_CHAT_DATABASE_PASSWORD"] %>
+  port: <%= ENV["BLAH_BLAH_CHAT_DATABASE_PORT"] %>
+  host: <%= ENV["BLAH_BLAH_CHAT_DATABASE_HOST"] %>

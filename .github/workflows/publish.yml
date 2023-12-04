@@ -6,17 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
+        # https://github.com/actions/checkout/#usage
         uses: actions/checkout@v4
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        # https://github.com/docker/login-action/#usage
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build the blah_blah_chat Docker image
-        run: |
-          docker build . --tag ghcr.io/rubygitflow/blah_blah_chat:latest
-          docker run ghcr.io/rubygitflow/blah_blah_chat:latest
-          docker push ghcr.io/rubygitflow/blah_blah_chat:latest
+      - name: Build and push the blah_blah_chat Docker image
+        # https://github.com/docker/build-push-action/#usage
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: rubygitflow/blah_blah_chat:latest

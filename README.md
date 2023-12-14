@@ -45,7 +45,7 @@ $ rubocop
 
 ## Create docker image
 ```bash
-$ docker build . -t blah-blah-chat:1.0
+$ docker build . -t blah-blah-chat:1.1
 ```
 
 ## Run docker container
@@ -59,4 +59,4 @@ $ watch -n1 docker ps
 ```
 
 ## Run application from docker container
-`localhost:3321`
+`localhost:3322`

@@ -31,7 +31,7 @@ services:
     # image: blah-blah-chat:1.1
     image: ghcr.io/rubygitflow/blah_blah_chat:latest
     ports:
-      - '3321:3000'
+      - '3322:3000'
     env_file: .env
     depends_on:
       - postgresql

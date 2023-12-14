@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   hideBeforeRender(event) {
-    console.log("!!>")
     if (this.isOpen()) {
       console.log('hideBeforeRender.isOpen')
       event.preventDefault()
@@ -36,14 +35,5 @@ export default class extends Controller {
       this.hideBeforeRender(e)
     }
   }
-
-  // // hide modal on successful form submission
-  // // action: "turbo:submit-end->turbo-modal#submitEnd"
-  // submitEnd(e) {
-  //   console.log(e.detail)
-  //   if (e.detail.success) {
-  //     this.hideBeforeRender(e)
-  //   }
-  // }
 
 }

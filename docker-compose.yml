@@ -28,7 +28,7 @@ services:
       - redis
 
   app:
-    # image: blah-blah-chat:1.0
+    # image: blah-blah-chat:1.1
     image: ghcr.io/rubygitflow/blah_blah_chat:latest
     ports:
       - '3321:3000'

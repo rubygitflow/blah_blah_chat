@@ -58,7 +58,7 @@ gem 'propshaft', '~> 0.8.0'
 # Executes code after database commit wherever you want in your application [https://github.com/Envek/after_commit_everywhere]
 gem 'after_commit_everywhere', '>= 1.3.1'
 
-gem 'bootstrap_icons_rails'
+gem 'bootstrap_icons_rails', '>= 1.91.01'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -86,6 +86,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara', '~> 3.39'
   gem 'database_cleaner', '~> 2.0'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.15'
 end

@@ -8,7 +8,9 @@ export default class extends Controller {
   }
 
   initialize() {
-    this.audio = new Audio(window.location.origin + '/513269__zhr__tl-light-on-e.mp3')
+    this.audio = new Audio(
+      window.location.origin + '/513269__zhr__tl-light-on-e.mp3'
+    )
     this.toast = new Toast(
       document.getElementById('receiveToast')
     )

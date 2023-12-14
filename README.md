@@ -37,6 +37,14 @@ More details can be found in `/blah-blah-chat-api-spec.jst` or in [JSight API re
 ```bash
 $ rspec spec
 ```
+or
+```bash
+HEADLESS=true rspec spec
+```
+or
+```bash
+HEADLESS=1 rspec spec
+```
 
 ## Check syntax
 ```bash

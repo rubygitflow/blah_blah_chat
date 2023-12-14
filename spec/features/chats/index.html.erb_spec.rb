@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'chats/index.html.erb', type: :feature do
-  let!(:extra_chats_count) { 20 }
+  let!(:extra_chats_count) { 30 }
   let!(:extra_chats) { create_list(:chat, extra_chats_count) }
   let!(:chats) { create_list(:chat, 3) }
 
@@ -59,8 +59,11 @@ RSpec.describe 'chats/index.html.erb', type: :feature do
     context 'when scrolling the chat index' do
       it 'autoloads the entire list of chats' do
         expect(page).to have_css("#chat_#{extra_chats[-1].id}")
-        page.execute_script 'window.scrollTo(0,10000)'
+        page.execute_script 'window.scrollTo(0,document.documentElement.scrollHeight)'
         sleep 0.5
+        page.execute_script 'window.scrollTo(0,document.documentElement.scrollHeight)'
+        sleep 0.5
+        # save_and_open_page
         expect(page).to have_css("#chat_#{extra_chats[0].id}")
       end
     end

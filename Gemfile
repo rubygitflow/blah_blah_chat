@@ -88,4 +88,5 @@ group :test do
   gem 'database_cleaner', '~> 2.0'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.15'
+  gem 'simplecov', '~> 0.22.0', require: false
 end

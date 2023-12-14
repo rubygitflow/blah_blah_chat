@@ -12,19 +12,11 @@ RSpec.describe 'posts/highlighted.turbo_stream.erb', type: :feature do
     expect(page).to have_content('𓇼')
   end
 
-  it 'toggles to highlighting/unhighlighting the post' do
-    find_all('a').each do |a|
-      next unless a[:href] == "/chats/#{chat.id}/posts/#{post.id}/highlight"
-
-      click_link '𓇼'
-      break
-    end
-
-    find_all('a').each do |a|
-      next unless a[:href] == "/chats/#{chat.id}/posts/#{post.id}/highlight"
-
-      click_link '⭐'
-      break
-    end
+  it 'toggles to highlighting/unhighlighting the post', js: true do
+    expect(page).not_to have_content('⭐')
+    click_on '𓇼'
+    expect(page).not_to have_content('𓇼')
+    click_on '⭐'
+    expect(page).not_to have_content('⭐')
   end
 end

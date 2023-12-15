@@ -57,9 +57,12 @@ jobs:
 
       - name: Migrate database
         env:
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
           RAILS_ENV: test
         run: |
-          bundler exec rails db:migrate
+          bundler exec rails db:schema:load
 
       - name: Run Tests
         run: HEADLESS=true bundle exec rspec 

@@ -21,8 +21,9 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          POSTGRES_PASSWORD:
         ports:
         - 5432:5432
         options: >-
@@ -52,7 +53,9 @@ jobs:
 
       - name: Create PostgreSQL database
         env:
+          PGUSER: postgres
           PGPASSWORD: postgres
+          POSTGRES_PASSWORD:
         run: |
           psql -c 'create database "blah_blah_chat_test";' -U postgres -h localhost -p ${{ job.services.postgres.ports[5432] }}
 

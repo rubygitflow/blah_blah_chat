@@ -1,4 +1,7 @@
 # blah_blah_chat
+
+[![Tests](https://github.com/rubygitflow/blah-blah-chat/actions/workflows/test.yml/badge.svg)](https://github.com/rubygitflow/blah-blah-chat/actions)
+
 Demo App written in **Hotwire**
 
 Here we can add topics and post messages.
@@ -35,15 +38,15 @@ More details can be found in `/blah-blah-chat-api-spec.jst` or in [JSight API re
 
 ## Run tests
 ```bash
-$ rspec spec
+$ rspec ./spec
 ```
 or
 ```bash
-HEADLESS=true rspec spec
+HEADLESS=true rspec ./spec
 ```
 or
 ```bash
-HEADLESS=1 rspec spec
+HEADLESS=1 rspec ./spec
 ```
 
 ## Check syntax

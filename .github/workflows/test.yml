@@ -1,0 +1,61 @@
+name: Tests
+
+on:
+  workflow_dispatch:
+    inputs: {}
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        ruby: ['3.2']
+    runs-on: ${{ matrix.os }}
+    name: Tests with Ruby ${{ matrix.ruby }}
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+        - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install db dependencies and check connections
+        run: |
+          DEBIAN_FRONTEND="noninteractive" sudo apt-get install -yqq postgresql-client libpq-dev
+          env PGPASSWORD=postgres psql -h localhost -p ${{ job.services.postgres.ports[5432] }} -U postgres -l
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Install Ruby dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Create PostgreSQL database
+        run: |
+          RAILS_ENV=test bundle exec rails db:setup
+
+      - name: Run Tests
+        run: HEADLESS=true bundle exec rspec 
+
+      - name: Run Rubocop
+        run: bundle exec rubocop

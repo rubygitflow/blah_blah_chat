@@ -64,6 +64,7 @@ RSpec.describe 'chats/index.html.erb', type: :feature do
         page.execute_script 'window.scrollTo(0,document.documentElement.scrollHeight)'
         sleep 0.5
         # save_and_open_page
+        # the next expectation is interrupted periodically. No idea :(
         expect(page).to have_css("#chat_#{extra_chats[0].id}")
       end
     end

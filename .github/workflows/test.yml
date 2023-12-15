@@ -53,10 +53,8 @@ jobs:
       - name: Create PostgreSQL database
         env:
           PGPASSWORD: postgres
-          RAILS_ENV: test
         run: |
-          bundler exec rails db:create
-          bundler exec rails db:migrate
+          psql -c 'create database "blah_blah_chat_test";' -U postgres -h localhost -p ${{ job.services.postgres.ports[5432] }}
 
       - name: Run Tests
         run: HEADLESS=true bundle exec rspec 

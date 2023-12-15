@@ -56,6 +56,12 @@ jobs:
         run: |
           psql -c 'create database "blah_blah_chat_test";' -U postgres -h localhost -p ${{ job.services.postgres.ports[5432] }}
 
+      - name: Migrate database
+        env:
+          RAILS_ENV: test
+        run: |
+          bundler exec rails db:migrate
+
       - name: Run Tests
         run: HEADLESS=true bundle exec rspec 
 

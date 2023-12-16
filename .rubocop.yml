@@ -22,6 +22,10 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/ExampleLength:
   Max: 12
 
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   Exclude:
     - bin/**/*

@@ -1,6 +1,6 @@
 # blah_blah_chat
 
-[![Tests](https://github.com/rubygitflow/blah-blah-chat/actions/workflows/ci.yml/badge.svg)](https://github.com/rubygitflow/blah-blah-chat/actions)
+[![Tests](https://github.com/rubygitflow/blah_blah_chat/actions/workflows/ci.yml/badge.svg)](https://github.com/rubygitflow/blah_blah_chat/actions)
 
 Demo App written in **Hotwire**
 

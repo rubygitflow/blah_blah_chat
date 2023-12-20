@@ -59,15 +59,37 @@ $ rubocop
 $ docker build . -t blah-blah-chat:1.1
 ```
 
-## Run docker container
+## Run docker container inside the application folder
+
+### Start the container with any linked services
 ```bash
 $ docker compose up
 ```
 
-## Look at Health monitoring
+### Look at Health monitoring
 ```bash
 $ watch -n1 docker ps
 ```
 
-## Run application from docker container
-`localhost:3322`
+### Call the application  in the browser from the docker container
+`http://localhost:3322`
+
+## Run the docker container on a clean computer
+
+### Install and run Docker Desktop on the system
+see here https://docs.docker.com/compose/install
+
+### Create a folder for docker configuration files
+
+### Download docker-compose.yml from the below link inside the created folder
+https://github.com/rubygitflow/blah_blah_chat/blob/master/docker-compose.yml 
+
+### Download env-example from the below link inside the created folder and rename it to .env
+https://github.com/rubygitflow/blah_blah_chat/blob/master/env-example
+
+### Run this command in a terminal inside the folder with the docker-compose.yml and .env files
+```bash
+sudo docker compose up
+```
+### Call the application  in the browser from the docker container
+`http://localhost:3322`

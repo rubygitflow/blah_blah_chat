@@ -8,6 +8,8 @@ Here we can add topics and post messages.
 **Stimulus** allows us to process posts on a single page.
 **Turbo** allows us to monitor the changes from any chat in real time.
 
+Article: https://habr.com/ru/articles/781940/
+
 ## Setup
 Configure the database in `config/database.yml`
 ```bash

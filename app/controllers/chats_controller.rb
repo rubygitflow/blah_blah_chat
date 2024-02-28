@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
     @cursor = params[:cursor].to_i
     @used = params[:opened].to_a
     # define @created_at To exclude newly created chats
-    @created_at = (params[:newly_created_at] || Time.now).to_time
+    @created_at = (params[:newly_created_at] || Time.zone.now).to_time
     @chats = Chat.all
                  .where.not(id: @used)
                  .where('created_at < ?', @created_at)

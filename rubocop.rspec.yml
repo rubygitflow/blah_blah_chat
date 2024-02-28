@@ -1,0 +1,55 @@
+require:
+  - rubocop-rspec
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 7
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+# 3
+RSpec/NestedGroups:
+  Max: 4
+
+# 5
+RSpec/MultipleMemoizedHelpers:
+  Enabled: 5
+
+# 10
+RSpec/ExampleLength:
+  Max: 12
+
+RSpec/FactoryBot:
+  Include:
+    - spec/factories/**/*.rb
+
+RSpec/LetBeforeExamples:
+  Enabled: true
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+RSpec/MultipleSubjects:
+  Enabled: true
+
+RSpec/ReturnFromStub:
+  # expect(foo).to receive(:bar) { :baz } # Bad
+  # expect(foo).to receive(:bar).and_return(:baz) # Good
+  # expect(foo).to receive(:bar).and_return { Time.current } # Good
+  Enabled: true
+
+RSpec/PredicateMatcher:
+  # Predicate matchers' error messages are shitty, we should not use them unless they aren't
+  # expect(foo).to be_nil # good
+  # expect(foo).to be_active # bad if foo.inspect takes 5 screens
+  # expect(foo.active?).to be_truthy # good
+  Enabled: false
+
+RSpec/NoExpectationExample:
+  Enabled: false

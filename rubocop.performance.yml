@@ -1,0 +1,11 @@
+require:
+  - rubocop-performance
+
+Performance/Caller:
+  Enabled: true
+
+Performance/Casecmp:
+  Enabled: false
+
+Performance/UnfreezeString:
+  Enabled: true

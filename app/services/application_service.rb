@@ -21,7 +21,7 @@ class ApplicationService
   end
 
   def drop
-    return unless @object.present?
+    return if @object.blank?
 
     # гарантируем обязательный возврат статуса результата без ошибок
     @object&.destroyed?
